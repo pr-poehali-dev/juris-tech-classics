@@ -10,6 +10,17 @@ import Icon from '@/components/ui/icon';
 const Index = () => {
   const [activeService, setActiveService] = useState<string>('');
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offsetTop = element.offsetTop - 80; // Account for fixed header
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const services = [
     {
       id: 'corporate',
@@ -87,10 +98,25 @@ const Index = () => {
             LexPartners
           </div>
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#services" className="text-muted-foreground hover:text-foreground transition-colors">Услуги</a>
-            <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">О нас</a>
-            <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Контакты</a>
-            <Button size="sm">Консультация</Button>
+            <button 
+              onClick={() => scrollToSection('services')} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Услуги
+            </button>
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              О нас
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Контакты
+            </button>
+            <Button size="sm" onClick={() => scrollToSection('contact')}>Консультация</Button>
           </div>
           <Button variant="ghost" size="sm" className="md:hidden">
             <Icon name="Menu" size={20} />
@@ -114,11 +140,11 @@ const Index = () => {
                 Защищаем ваши интересы с 2008 года. Комплексные юридические услуги для бизнеса и частных лиц.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="font-medium">
+                <Button size="lg" className="font-medium" onClick={() => scrollToSection('contact')}>
                   Получить консультацию
                   <Icon name="ArrowRight" size={18} className="ml-2" />
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" onClick={() => scrollToSection('services')}>
                   Наши услуги
                 </Button>
               </div>
