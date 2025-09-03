@@ -5,10 +5,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [activeService, setActiveService] = useState<string>('');
+  const [selectedService, setSelectedService] = useState<any>(null);
+  const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -21,12 +24,19 @@ const Index = () => {
     }
   };
 
+  const openServiceModal = (service: any) => {
+    setSelectedService(service);
+    setIsServiceModalOpen(true);
+  };
+
   const services = [
     {
       id: 'corporate',
       title: 'Корпоративное право',
       description: 'Комплексное юридическое сопровождение бизнеса',
       details: 'Регистрация компаний, корпоративные споры, слияния и поглощения, договорное право, соблюдение требований законодательства.',
+      fullDescription: 'Мы предоставляем комплексные услуги корпоративного права для компаний всех размеров. Наши специалисты помогут вам с регистрацией бизнеса, структурированием корпоративного управления, проведением сделок M&A, разрешением корпоративных споров. Мы обеспечиваем правовое сопровождение на всех этапах развития вашего бизнеса.',
+      services: ['Регистрация ООО и АО', 'Корпоративное управление', 'Слияния и поглощения', 'Договорное право', 'Корпоративные споры', 'Комплаенс'],
       icon: 'Building2'
     },
     {
@@ -34,6 +44,8 @@ const Index = () => {
       title: 'Гражданское право',
       description: 'Защита прав и интересов физических лиц',
       details: 'Семейные споры, наследственное право, защита прав потребителей, возмещение ущерба, договорные отношения.',
+      fullDescription: 'Предоставляем профессиональную правовую помощь физическим лицам по широкому спектру вопросов гражданского права. Наша команда поможет в решении семейных споров, оформлении наследства, защите прав потребителей и взыскании ущерба.',
+      services: ['Семейные споры', 'Наследственное право', 'Защита прав потребителей', 'Договорные споры', 'Возмещение ущерба', 'Жилищные вопросы'],
       icon: 'Users'
     },
     {
@@ -41,6 +53,8 @@ const Index = () => {
       title: 'Недвижимость',
       description: 'Сделки с недвижимостью и земельные вопросы',
       details: 'Купля-продажа недвижимости, оформление прав собственности, земельные споры, арендные отношения.',
+      fullDescription: 'Комплексное правовое сопровождение сделок с недвижимостью. Оформление прав собственности, проверка юридической чистоты объектов, сопровождение сделок купли-продажи, разрешение земельных споров.',
+      services: ['Сделки с недвижимостью', 'Оформление прав собственности', 'Земельные вопросы', 'Арендные отношения', 'Жилищные споры', 'Due diligence'],
       icon: 'Home'
     },
     {
@@ -48,6 +62,8 @@ const Index = () => {
       title: 'Интеллектуальная собственность',
       description: 'Защита авторских прав и товарных знаков',
       details: 'Регистрация товарных знаков, патентование, защита авторских прав, лицензионные соглашения.',
+      fullDescription: 'Профессиональная защита интеллектуальной собственности. Регистрация и защита товарных знаков, патентование изобретений, защита авторских и смежных прав, составление лицензионных договоров.',
+      services: ['Товарные знаки', 'Патентование', 'Авторские права', 'Лицензирование', 'Защита от нарушений', 'IP-аудит'],
       icon: 'Shield'
     },
     {
@@ -55,6 +71,8 @@ const Index = () => {
       title: 'Судебная практика',
       description: 'Представительство в судах всех инстанций',
       details: 'Арбитражные споры, гражданские дела, административные споры, исполнительное производство.',
+      fullDescription: 'Профессиональное представительство в судах всех инстанций. Ведение арбитражных и гражданских дел, защита в административных спорах, сопровождение исполнительного производства.',
+      services: ['Арбитражные споры', 'Гражданские дела', 'Административные споры', 'Исполнительное производство', 'Апелляционное обжалование', 'Кассационные жалобы'],
       icon: 'Scale'
     },
     {
@@ -62,6 +80,8 @@ const Index = () => {
       title: 'Налоговое консультирование',
       description: 'Налоговое планирование и споры с ИФНС',
       details: 'Налоговое планирование, споры с налоговыми органами, налоговые проверки, оптимизация налогообложения.',
+      fullDescription: 'Комплексные услуги в области налогового права. Налоговое планирование и оптимизация, представительство при налоговых проверках, разрешение споров с налоговыми органами.',
+      services: ['Налоговое планирование', 'Налоговые споры', 'Сопровождение проверок', 'Налоговая оптимизация', 'Административная ответственность', 'Трансфертное ценообразование'],
       icon: 'FileText'
     }
   ];
@@ -236,7 +256,12 @@ const Index = () => {
                         <p className="text-muted-foreground leading-relaxed text-sm mb-4">
                           {service.details}
                         </p>
-                        <Button variant="outline" size="sm" className="w-full">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="w-full"
+                          onClick={() => openServiceModal(service)}
+                        >
                           Подробнее
                           <Icon name="ArrowRight" size={16} className="ml-2" />
                         </Button>
@@ -399,6 +424,55 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* Service Details Modal */}
+      <Dialog open={isServiceModalOpen} onOpenChange={setIsServiceModalOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <Icon name={selectedService?.icon || 'FileText'} size={20} className="text-primary" />
+              </div>
+              <DialogTitle className="text-xl">{selectedService?.title}</DialogTitle>
+            </div>
+            <DialogDescription>{selectedService?.description}</DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-6">
+            <div>
+              <h4 className="font-semibold mb-3">Описание услуги</h4>
+              <p className="text-muted-foreground leading-relaxed">
+                {selectedService?.fullDescription}
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-3">Что входит в услугу</h4>
+              <div className="grid grid-cols-2 gap-2">
+                {selectedService?.services?.map((item: string, index: number) => (
+                  <div key={index} className="flex items-center gap-2 text-sm">
+                    <Icon name="Check" size={16} className="text-primary flex-shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex gap-3">
+              <Button className="flex-1" onClick={() => {
+                setIsServiceModalOpen(false);
+                scrollToSection('contact');
+              }}>
+                Получить консультацию
+                <Icon name="ArrowRight" size={16} className="ml-2" />
+              </Button>
+              <Button variant="outline" onClick={() => setIsServiceModalOpen(false)}>
+                Закрыть
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
