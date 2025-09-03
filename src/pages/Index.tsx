@@ -204,7 +204,7 @@ const Index = () => {
                   </CardHeader>
                   
                   {/* Expandable content that shows on hover */}
-                  <div className="overflow-hidden transition-all duration-300 max-h-0 group-hover:max-h-48">
+                  <div className="overflow-hidden transition-all duration-300 max-h-0 group-hover:max-h-64">
                     <CardContent className="pt-0 pb-6 px-6">
                       <div className="border-t border-border pt-4">
                         <p className="text-muted-foreground leading-relaxed text-sm mb-4">
