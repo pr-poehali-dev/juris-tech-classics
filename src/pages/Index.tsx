@@ -176,41 +176,51 @@ const Index = () => {
             </p>
           </div>
 
-          <Accordion type="single" collapsible className="space-y-4">
+          <div className="relative max-w-2xl mx-auto">
             {services.map((service, index) => (
-              <AccordionItem
+              <div
                 key={service.id}
-                value={service.id}
-                className="animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="relative group animate-fade-in"
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  zIndex: services.length - index,
+                  marginTop: index === 0 ? 0 : '-12px'
+                }}
               >
-                <Card className="overflow-hidden transition-all duration-200 hover:shadow-md">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                    <CardHeader className="p-0 flex-row items-center gap-4 space-y-0">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                <Card className="overflow-hidden transition-all duration-300 group-hover:translate-y-[-8px] group-hover:shadow-xl border-2 hover:border-primary/20 cursor-pointer">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                         <Icon name={service.icon} size={24} className="text-primary" />
                       </div>
-                      <div className="text-left">
-                        <CardTitle className="text-lg font-semibold">{service.title}</CardTitle>
-                        <CardDescription className="text-sm">{service.description}</CardDescription>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg font-semibold group-hover:text-primary transition-colors">{service.title}</CardTitle>
+                        <CardDescription className="text-sm mt-1">{service.description}</CardDescription>
                       </div>
-                    </CardHeader>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-6">
-                    <p className="text-muted-foreground leading-relaxed pl-16">
-                      {service.details}
-                    </p>
-                    <div className="mt-4 pl-16">
-                      <Button variant="outline" size="sm">
-                        Подробнее
-                        <Icon name="ArrowRight" size={16} className="ml-2" />
-                      </Button>
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <Icon name="ChevronDown" size={20} className="text-primary" />
+                      </div>
                     </div>
-                  </AccordionContent>
+                  </CardHeader>
+                  
+                  {/* Expandable content that shows on hover */}
+                  <div className="overflow-hidden transition-all duration-300 max-h-0 group-hover:max-h-48">
+                    <CardContent className="pt-0 pb-6 px-6">
+                      <div className="border-t border-border pt-4">
+                        <p className="text-muted-foreground leading-relaxed text-sm mb-4">
+                          {service.details}
+                        </p>
+                        <Button variant="outline" size="sm" className="w-full">
+                          Подробнее
+                          <Icon name="ArrowRight" size={16} className="ml-2" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </div>
                 </Card>
-              </AccordionItem>
+              </div>
             ))}
-          </Accordion>
+          </div>
         </div>
       </section>
 
