@@ -362,8 +362,7 @@ const Index = () => {
                   <div>
                     <h3 className="font-semibold mb-2">Офис</h3>
                     <p className="text-muted-foreground">
-                      г. Москва, ул. Тверская, д. 15, стр. 1<br />
-                      БЦ "Галерея Актёр", офис 404
+                      г. Краснодар, улица Калинина, 190, офис 3
                     </p>
                   </div>
                 </div>
@@ -375,8 +374,7 @@ const Index = () => {
                   <div>
                     <h3 className="font-semibold mb-2">Телефон</h3>
                     <p className="text-muted-foreground">
-                      +7 (495) 123-45-67<br />
-                      +7 (800) 123-45-67 (бесплатно)
+                      8-918-480-01-67
                     </p>
                   </div>
                 </div>
@@ -388,8 +386,7 @@ const Index = () => {
                   <div>
                     <h3 className="font-semibold mb-2">Email</h3>
                     <p className="text-muted-foreground">
-                      info@lexpartners.ru<br />
-                      consultation@lexpartners.ru
+                      astartes.lawyers@gmail.com
                     </p>
                   </div>
                 </div>
@@ -402,8 +399,7 @@ const Index = () => {
                     <h3 className="font-semibold mb-2">Время работы</h3>
                     <p className="text-muted-foreground">
                       Пн-Пт: 9:00 - 19:00<br />
-                      Сб: 10:00 - 16:00<br />
-                      Вс: выходной
+                      Сб-Вс: выходной
                     </p>
                   </div>
                 </div>
