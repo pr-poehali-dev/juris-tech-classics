@@ -115,11 +115,10 @@ const Index = () => {
       <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img 
-              src="https://cdn.poehali.dev/files/7c17ee61-581f-4042-b304-aebdde300b67.png" 
-              alt="Astra Legal"
-              className="h-8 w-auto"
-            />
+            <div className="text-center">
+              <div className="font-display font-bold text-2xl text-primary leading-none">AL</div>
+              <div className="text-xs font-medium text-foreground/70 tracking-wide mt-0.5">АСТРА ЛЕГАЛ</div>
+            </div>
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <button 
@@ -418,12 +417,9 @@ const Index = () => {
       <footer className="bg-foreground text-background py-8 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <img 
-                src="https://cdn.poehali.dev/files/7c17ee61-581f-4042-b304-aebdde300b67.png" 
-                alt="Astra Legal"
-                className="h-6 w-auto brightness-0 invert"
-              />
+            <div className="mb-4 md:mb-0 text-center">
+              <div className="font-display font-bold text-xl text-background leading-none">AL</div>
+              <div className="text-xs font-medium text-background/70 tracking-wide mt-0.5">АСТРА ЛЕГАЛ</div>
             </div>
             <div className="flex items-center space-x-6 text-sm">
               <span>© 2024 Astra Legal. Все права защищены.</span>
