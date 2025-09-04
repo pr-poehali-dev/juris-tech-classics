@@ -116,8 +116,8 @@ const Index = () => {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="text-center">
-              <div className="font-display font-bold text-2xl text-primary leading-none">AL</div>
-              <div className="text-xs font-medium text-foreground/70 tracking-wide mt-0.5">АСТРА ЛЕГАЛ</div>
+              <div className="font-display font-bold text-3xl text-primary leading-none">AL</div>
+              <div className="text-sm font-medium text-foreground/70 tracking-wide mt-1">АСТРА ЛЕГАЛ</div>
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-8">
@@ -418,8 +418,8 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0 text-center">
-              <div className="font-display font-bold text-xl text-background leading-none">AL</div>
-              <div className="text-xs font-medium text-background/70 tracking-wide mt-0.5">АСТРА ЛЕГАЛ</div>
+              <div className="font-display font-bold text-2xl text-background leading-none">AL</div>
+              <div className="text-sm font-medium text-background/70 tracking-wide mt-1">АСТРА ЛЕГАЛ</div>
             </div>
             <div className="flex items-center space-x-6 text-sm">
               <span>© 2024 Astra Legal. Все права защищены.</span>
