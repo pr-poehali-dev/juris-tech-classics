@@ -148,26 +148,27 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4">
-        <div className="container mx-auto max-w-6xl">
+      <section className="pt-24 pb-16 px-4 bg-gradient-to-br from-background via-background to-purple-50/30 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-small-gray-100 [mask-image:linear-gradient(0deg,transparent,black)] opacity-30" />
+        <div className="container mx-auto max-w-6xl relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 animate-fade-in">
-              <Badge variant="outline" className="w-fit">
+            <div className="space-y-8 animate-fade-in">
+              <Badge variant="outline" className="w-fit bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200/50 text-purple-800">
                 Профессиональные юридические услуги
               </Badge>
-              <h1 className="font-display text-4xl lg:text-6xl font-bold text-foreground leading-tight">
+              <h1 className="font-display text-5xl lg:text-7xl font-bold text-foreground leading-tight">
                 Ваш надёжный 
-                <span className="text-primary block">правовой партнёр</span>
+                <span className="bg-gradient-to-r from-purple-600 via-violet-600 to-purple-700 bg-clip-text text-transparent block">правовой партнёр</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg">
                 Защищаем ваши интересы с 2008 года. Комплексные юридические услуги для бизнеса и частных лиц.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="font-medium" onClick={() => scrollToSection('contact')}>
+                <Button size="lg" className="font-medium bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 shadow-lg shadow-purple-500/25 transition-all duration-300" onClick={() => scrollToSection('contact')}>
                   Получить консультацию
                   <Icon name="ArrowRight" size={18} className="ml-2" />
                 </Button>
-                <Button variant="outline" size="lg" onClick={() => scrollToSection('services')}>
+                <Button variant="outline" size="lg" className="border-2 border-purple-200 text-purple-700 hover:bg-purple-50 transition-all duration-300" onClick={() => scrollToSection('services')}>
                   Наши услуги
                 </Button>
               </div>
@@ -236,11 +237,11 @@ const Index = () => {
                   marginTop: index === 0 ? 0 : '-12px'
                 }}
               >
-                <Card className="overflow-hidden transition-all duration-300 group-hover:translate-y-[-8px] group-hover:shadow-xl border-2 hover:border-primary/20 cursor-pointer">
+                <Card className="overflow-hidden transition-all duration-300 group-hover:translate-y-[-12px] group-hover:shadow-2xl group-hover:shadow-purple-500/10 border-0 bg-white/80 backdrop-blur-sm hover:bg-white cursor-pointer ring-1 ring-gray-100 hover:ring-purple-200/50">
                   <CardHeader className="pb-3">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <Icon name={service.icon} size={24} className="text-primary" />
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-100 to-violet-100 flex items-center justify-center group-hover:from-purple-200 group-hover:to-violet-200 transition-all duration-300 shadow-sm">
+                        <Icon name={service.icon} size={26} className="text-purple-600" />
                       </div>
                       <div className="flex-1">
                         <CardTitle className="text-lg font-semibold group-hover:text-primary transition-colors">{service.title}</CardTitle>
@@ -309,13 +310,13 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 px-4 bg-secondary/30">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12 animate-fade-in">
-            <Badge variant="outline" className="mb-4">
+      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-gray-50/50 to-purple-50/30">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-16 animate-fade-in">
+            <Badge variant="outline" className="mb-6 bg-white/80 border-purple-200/50 text-purple-800">
               Свяжитесь с нами
             </Badge>
-            <h2 className="font-display text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className="font-display text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
               Получите консультацию
             </h2>
             <p className="text-lg text-muted-foreground">
@@ -324,10 +325,10 @@ const Index = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            <Card className="p-6 animate-fade-in">
-              <CardHeader className="p-0 mb-6">
-                <CardTitle>Отправить сообщение</CardTitle>
-                <CardDescription>Опишите вашу ситуацию, и мы подберём оптимальное решение</CardDescription>
+            <Card className="p-8 animate-fade-in bg-white/90 backdrop-blur-sm border-0 shadow-xl shadow-purple-500/5 ring-1 ring-gray-100/50">
+              <CardHeader className="p-0 mb-8">
+                <CardTitle className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">Отправить сообщение</CardTitle>
+                <CardDescription className="text-base text-gray-600">Опишите вашу ситуацию, и мы подберём оптимальное решение</CardDescription>
               </CardHeader>
               <CardContent className="p-0 space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
