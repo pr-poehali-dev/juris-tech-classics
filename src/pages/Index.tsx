@@ -7,11 +7,13 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
+import AccordionCard from '@/components/AccordionCard';
 
 const Index = () => {
   const [activeService, setActiveService] = useState<string>('');
   const [selectedService, setSelectedService] = useState<any>(null);
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
+  const [openAccordions, setOpenAccordions] = useState<Set<number>>(new Set());
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -108,6 +110,53 @@ const Index = () => {
       icon: 'Clock'
     }
   ];
+
+  const whyChooseUsData = [
+    {
+      title: 'Опыт высшего уровня',
+      content: 'Наш интеллект, образование и опыт не уступают крупнейшим юридическим фирмам страны, а наши юристы обладают междисциплинарным опытом в бизнесе и праве и науке. Наши юристы уже 25 лет представляют интересы корпоративных клиентов на самом высоком уровне в делах о возмещении расходов, действиях государственных органов, уголовных делах, гражданских исках, делах о корпоративных сделках и сделках с недвижимостью, консультировании по вопросам соблюдения законодательства.'
+    },
+    {
+      title: 'Бизнес-фокус',
+      content: 'Наши юристы разбираются в разнообразных юридических, деловых и финансовых проблемах, с которыми сталкиваются наши клиенты, и мы глубоко погружаемся в их бизнес, чтобы предвидеть, контролировать и минимизировать риски и проблемы, которые могут возникнуть в будущем. Мы видим свою задачу в том, чтобы помогать компаниям и их внутренним юристам успешно ориентироваться в сложной системе регулирования, влияющей на их повседневную и долгосрочную деятельность.'
+    },
+    {
+      title: 'Решения, ориентированные на клиента',
+      content: 'Юридическая фирма АСТРА ЛЕГАЛ стремится находить оптимальные решения для задач и проблем наших клиентов. Наши юристы прекрасно разбираются в специфике бизнеса наших клиентов и сложных отраслях, в которых они работают. Мы рассматриваем проблемы с точки зрения бизнеса и разрабатываем индивидуальные планы, которые наилучшим образом соответствуют текущим и долгосрочным целям наших клиентов.'
+    },
+    {
+      title: 'Гибкость и экономичность',
+      content: 'Юридическая фирма АСТРА ЛЕГАЛ гордится своей способностью предоставлять первоклассные услуги в области права по исключительно выгодной цене. Наш богатый опыт позволяет нам оперативно и эффективно решать сложные юридические вопросы. Мы понимаем, что юридические расходы могут быть крайне важны для наших к клиентов, и предлагаем гибкие схемы оплаты и тарифы, учитывающие индивидуальные потребности каждого клиента.'
+    },
+    {
+      title: 'Коллективный подход',
+      content: 'Сотрудничество с нашими клиентами, их консультантами и союристами является нашим главным приоритетом. Независимо от того, представляем ли мы интересы клиента в судебном деле или структурируем сложную сделку, мы сотрудничаем с экспертами и клиентами для решения сложных задач и поддержания развития компании в правильном направлении. Юристы нашей фирмы работают как сплочённая команда, обеспечивая своевременное и экономичное удовлетворение потребностей клиентов'
+    }
+  ];
+
+  const toggleAccordion = (index: number) => {
+    const newOpenAccordions = new Set(openAccordions);
+    if (newOpenAccordions.has(index)) {
+      newOpenAccordions.delete(index);
+    } else {
+      newOpenAccordions.add(index);
+    }
+    setOpenAccordions(newOpenAccordions);
+  };
+
+  const WhyChooseUsSection = () => (
+    <div className="space-y-4">
+      {whyChooseUsData.map((item, index) => (
+        <AccordionCard
+          key={index}
+          title={item.title}
+          content={item.content}
+          isOpen={openAccordions.has(index)}
+          onToggle={() => toggleAccordion(index)}
+        />
+      ))}
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-background font-body">
@@ -280,32 +329,21 @@ const Index = () => {
       </section>
 
       {/* Advantages Section */}
-      <section id="about" className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12 animate-fade-in">
-            <Badge variant="outline" className="mb-4">
+      <section id="about" className="py-20 px-4 bg-gradient-to-br from-gray-50/30 to-purple-50/20">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16 animate-fade-in">
+            <Badge variant="outline" className="mb-6 bg-white/80 border-purple-200/50 text-purple-800">
               Наши преимущества
             </Badge>
-            <h2 className="font-display text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className="font-display text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
               Почему выбирают нас
             </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Узнайте, что делает нас лидерами в области юридических услуг
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {advantages.map((advantage, index) => (
-              <Card
-                key={index}
-                className="p-6 text-center hover:shadow-md transition-all duration-200 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <Icon name={advantage.icon} size={24} className="text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">{advantage.title}</h3>
-                <p className="text-sm text-muted-foreground">{advantage.description}</p>
-              </Card>
-            ))}
-          </div>
+          <WhyChooseUsSection />
         </div>
       </section>
 
