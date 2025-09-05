@@ -13,7 +13,7 @@ const Index = () => {
   const [activeService, setActiveService] = useState<string>('');
   const [selectedService, setSelectedService] = useState<any>(null);
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
-  const [openAccordions, setOpenAccordions] = useState<Set<number>>(new Set());
+  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -135,13 +135,11 @@ const Index = () => {
   ];
 
   const toggleAccordion = (index: number) => {
-    const newOpenAccordions = new Set(openAccordions);
-    if (newOpenAccordions.has(index)) {
-      newOpenAccordions.delete(index);
+    if (openAccordion === index) {
+      setOpenAccordion(null);
     } else {
-      newOpenAccordions.add(index);
+      setOpenAccordion(index);
     }
-    setOpenAccordions(newOpenAccordions);
   };
 
   const WhyChooseUsSection = () => (
@@ -151,7 +149,7 @@ const Index = () => {
           key={index}
           title={item.title}
           content={item.content}
-          isOpen={openAccordions.has(index)}
+          isOpen={openAccordion === index}
           onToggle={() => toggleAccordion(index)}
         />
       ))}

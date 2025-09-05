@@ -11,13 +11,13 @@ interface AccordionCardProps {
 
 export default function AccordionCard({ title, content, isOpen = false, onToggle }: AccordionCardProps) {
   return (
-    <Card className="overflow-hidden bg-white/90 backdrop-blur-sm border-0 shadow-lg shadow-purple-500/5 ring-1 ring-gray-100/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
+    <Card className="overflow-hidden bg-white/90 backdrop-blur-sm border-0 shadow-lg shadow-purple-500/5 ring-1 ring-gray-100/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-500 hover:scale-[1.02]">
       <div 
         className="p-6 cursor-pointer flex items-center justify-between"
         onClick={onToggle}
       >
         <h3 className="text-lg font-semibold text-gray-900 pr-4">{title}</h3>
-        <div className={`transform transition-transform duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'} flex-shrink-0`}>
+        <div className={`transform transition-transform duration-500 ease-in-out ${isOpen ? 'rotate-45' : 'rotate-0'} flex-shrink-0`}>
           <Icon 
             name="Plus" 
             size={24} 
@@ -27,8 +27,8 @@ export default function AccordionCard({ title, content, isOpen = false, onToggle
       </div>
       
       <div 
-        className={`transition-all duration-300 ease-in-out overflow-hidden ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        className={`transition-all duration-500 ease-in-out overflow-hidden ${
+          isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="px-6 pb-6 pt-0">
